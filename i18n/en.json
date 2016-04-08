@@ -1,155 +1,155 @@
 [
   {
     "id": "April",
-    "translation": "April"
+    "translation": "四月"
   },
   {
     "id": "August",
-    "translation": "August"
+    "translation": "八月"
   },
   {
     "id": "December",
-    "translation": "December"
+    "translation": "十二月"
   },
   {
     "id": "February",
-    "translation": "February"
+    "translation": "二月"
   },
   {
     "id": "January",
-    "translation": "January"
+    "translation": "一月"
   },
   {
     "id": "July",
-    "translation": "July"
+    "translation": "七月"
   },
   {
     "id": "June",
-    "translation": "June"
+    "translation": "六月"
   },
   {
     "id": "March",
-    "translation": "March"
+    "translation": "三月"
   },
   {
     "id": "May",
-    "translation": "May"
+    "translation": "五月"
   },
   {
     "id": "November",
-    "translation": "November"
+    "translation": "十一月"
   },
   {
     "id": "October",
-    "translation": "October"
+    "translation": "十月"
   },
   {
     "id": "September",
-    "translation": "September"
+    "translation": "九月"
   },
   {
     "id": "api.admin.file_read_error",
-    "translation": "Error reading log file"
+    "translation": "日志文件读取错误"
   },
   {
     "id": "api.admin.init.debug",
-    "translation": "Initializing admin api routes"
+    "translation": "初始化管理员api路径"
   },
   {
     "id": "api.admin.test_email.body",
-    "translation": "<br/><br/><br/>It appears your Mattermost email is setup correctly!"
+    "translation": "<br/><br/><br/>看起来你的Mattermost邮件设置正确!"
   },
   {
     "id": "api.admin.test_email.subject",
-    "translation": "Mattermost - Testing Email Settings"
+    "translation": "Mattermost - 测试邮件设置"
   },
   {
     "id": "api.api.init.parsing_templates.debug",
-    "translation": "Parsing server templates at %v"
+    "translation": "解析服务器模板 at %v"
   },
   {
     "id": "api.api.init.parsing_templates.error",
-    "translation": "Failed to parse server templates %v"
+    "translation": "服务器模板解析失败 %v"
   },
   {
     "id": "api.api.render.error",
-    "translation": "Error rendering template %v err=%v"
+    "translation": "模板呈现错误 %v err=%v"
   },
   {
     "id": "api.channel.add_member.added",
-    "translation": "%v added to the channel by %v"
+    "translation": "%v 通过%v添加到通道"
   },
   {
     "id": "api.channel.add_member.find_channel.app_error",
-    "translation": "Failed to find channel"
+    "translation": "查找通道失败"
   },
   {
     "id": "api.channel.add_member.find_user.app_error",
-    "translation": "Failed to find user to be added"
+    "translation": "未发现可添加的用户"
   },
   {
     "id": "api.channel.add_member.user_adding.app_error",
-    "translation": "Failed to find user doing the adding"
+    "translation": "未发现正在执行添加操作的用户"
   },
   {
     "id": "api.channel.add_user.to.channel.failed.app_error",
-    "translation": "Failed to add user to channel"
+    "translation": "通道用户添加失败"
   },
   {
     "id": "api.channel.add_user_to_channel.deleted.app_error",
-    "translation": "The channel has been archived or deleted"
+    "translation": "通道已被归档或删除"
   },
   {
     "id": "api.channel.add_user_to_channel.type.app_error",
-    "translation": "Can not add user to this channel type"
+    "translation": "不能添加用户至该类型通道"
   },
   {
     "id": "api.channel.create_channel.direct_channel.app_error",
-    "translation": "Must use createDirectChannel api service for direct message channel creation"
+    "translation": "直接信息通道的创建必须使用 createDirectChannel api 服务"
   },
   {
     "id": "api.channel.create_channel.invalid_character.app_error",
-    "translation": "Invalid character '__' in channel name for non-direct channel"
+    "translation": "非直接通道通道名称不允许使用无效字符 '__'（Invalid character '__' in channel name for non-direct channel）"
   },
   {
     "id": "api.channel.create_default_channels.off_topic",
-    "translation": "Off-Topic"
+    "translation": "脱离主题"
   },
   {
     "id": "api.channel.create_default_channels.town_square",
-    "translation": "Town Square"
+    "translation": "城市广场"
   },
   {
     "id": "api.channel.create_direct_channel.invalid_user.app_error",
-    "translation": "Invalid other user id "
+    "translation": "无效的其他用户ID "
   },
   {
     "id": "api.channel.delete_channel.archived",
-    "translation": "%v has archived the channel."
+    "translation": "%v 已被该频道归档."
   },
   {
     "id": "api.channel.delete_channel.cannot.app_error",
-    "translation": "Cannot delete the default channel {{.Channel}}"
+    "translation": "不能删除默认频道 {{.Channel}}"
   },
   {
     "id": "api.channel.delete_channel.deleted.app_error",
-    "translation": "The channel has been archived or deleted"
+    "translation": "该频道已被归档或删除"
   },
   {
     "id": "api.channel.delete_channel.failed_post.error",
-    "translation": "Failed to post archive message %v"
+    "translation": "归档信息发布失败 %v"
   },
   {
     "id": "api.channel.delete_channel.failed_send.app_error",
-    "translation": "Failed to send archive message"
+    "translation": "归档信息发送失败"
   },
   {
     "id": "api.channel.delete_channel.incoming_webhook.error",
-    "translation": "Encountered error deleting incoming webhook, id=%v"
+    "translation": "删除传入的 webhook 遇到错误, id=%v"
   },
   {
     "id": "api.channel.delete_channel.outgoing_webhook.error",
-    "translation": "Encountered error deleting outgoing webhook, id=%v"
+    "translation": "删除传出的 webhook 遇到错误, id=%v"
   },
   {
     "id": "api.channel.delete_channel.permissions.app_error",
@@ -157,91 +157,91 @@
   },
   {
     "id": "api.channel.get_channel_counts.app_error",
-    "translation": "Unable to get channel counts from the database"
+    "translation": "不能从数据库中获取到频道数"
   },
   {
     "id": "api.channel.get_channel_extra_info.deleted.app_error",
-    "translation": "The channel has been archived or deleted"
+    "translation": "该频道已被归档或删除"
   },
   {
     "id": "api.channel.get_channel_extra_info.member_limit.app_error",
-    "translation": "Failed to parse member limit"
+    "translation": "成员限制解析失败"
   },
   {
     "id": "api.channel.get_channels.error",
-    "translation": "Error in getting users profile for id=%v forcing logout"
+    "translation": "获取 id=%v 用户强制注销的配置文件出现错误"
   },
   {
     "id": "api.channel.init.debug",
-    "translation": "Initializing channel api routes"
+    "translation": "初始化频道 api 路径"
   },
   {
     "id": "api.channel.join_channel.permissions.app_error",
-    "translation": "You do not have the appropriate permissions"
+    "translation": "您没有合适的权限"
   },
   {
     "id": "api.channel.join_channel.post_and_forget",
-    "translation": "%v has joined the channel."
+    "translation": "%v 已经加入该频道"
   },
   {
     "id": "api.channel.leave.default.app_error",
-    "translation": "Cannot leave the default channel {{.Channel}}"
+    "translation": "不能离开默认频道 {{.Channel}}"
   },
   {
     "id": "api.channel.leave.direct.app_error",
-    "translation": "Cannot leave a direct message channel"
+    "translation": "不能离开直接消息通道"
   },
   {
     "id": "api.channel.leave.left",
-    "translation": "%v has left the channel."
+    "translation": "%v 已经离开该频道."
   },
   {
     "id": "api.channel.post_update_channel_header_message_and_forget.join_leave.error",
-    "translation": "Failed to post join/leave message %v"
+    "translation": "不能发布加入/离开的消息 %v"
   },
   {
     "id": "api.channel.post_update_channel_header_message_and_forget.removed",
-    "translation": "%s removed the channel header (was: %s)"
+    "translation": "%s 删除频道头 (was: %s)"
   },
   {
     "id": "api.channel.post_update_channel_header_message_and_forget.retrieve_user.error",
-    "translation": "Failed to retrieve user while trying to save update channel header message %v"
+    "translation": "尝试保存频道头更新信息时检索用户失败 %v"
   },
   {
     "id": "api.channel.post_update_channel_header_message_and_forget.updated_from",
-    "translation": "%s updated the channel header from: %s to: %s"
+    "translation": "%s 从%s到%s更新频道头信息"
   },
   {
     "id": "api.channel.post_update_channel_header_message_and_forget.updated_to",
-    "translation": "%s updated the channel header to: %s"
+    "translation": "%s 更新频道头to: %s"
   },
   {
     "id": "api.channel.post_user_add_remove_message_and_forget.error",
-    "translation": "Failed to post join/leave message %v"
+    "translation": "发布加入/离开消息失败 %v"
   },
   {
     "id": "api.channel.remove_member.permissions.app_error",
-    "translation": "You do not have the appropriate permissions "
+    "translation": "您没有相应的权限 "
   },
   {
     "id": "api.channel.remove_member.unable.app_error",
-    "translation": "Unable to remove user."
+    "translation": "无法删除用户"
   },
   {
     "id": "api.channel.remove_user_from_channel.deleted.app_error",
-    "translation": "The channel has been archived or deleted"
+    "translation": "该频道已被归档或删除"
   },
   {
     "id": "api.channel.update_channel.deleted.app_error",
-    "translation": "The channel has been archived or deleted"
+    "translation": "该频道已被归档或删除"
   },
   {
     "id": "api.channel.update_channel.permission.app_error",
-    "translation": "You do not have the appropriate permissions"
+    "translation": "您没有相应的权限"
   },
   {
     "id": "api.channel.update_channel.tried.app_error",
-    "translation": "Tried to perform an invalid update of the default channel {{.Channel}}"
+    "translation": "尝试执行默认频道的无效更新{{.Channel}}"
   },
   {
     "id": "api.command.admin_only.app_error",
