@@ -269,47 +269,47 @@
   },
   {
     "id": "api.command.execute_command.failed_resp.app_error",
-    "translation": "Command with a trigger of '{{.Trigger}}' returned response {{.Status}}"
+    "translation": "触发命令'{{.Trigger}}' 返回 {{.Status}}状态响应"
   },
   {
     "id": "api.command.execute_command.not_found.app_error",
-    "translation": "Command with a trigger of '{{.Trigger}}' not found"
+    "translation": "触发命令'{{.Trigger}}' 未发现"
   },
   {
     "id": "api.command.execute_command.save.app_error",
-    "translation": "An error while saving the command response to the channel"
+    "translation": "保存频道的命令响应出现一个错误"
   },
   {
     "id": "api.command.execute_command.start.app_error",
-    "translation": "No command trigger found"
+    "translation": "未发现命令触发事件"
   },
   {
     "id": "api.command.init.debug",
-    "translation": "Initializing command api routes"
+    "translation": "初始化命令 api 路径"
   },
   {
     "id": "api.command.regen.app_error",
-    "translation": "Inappropriate permissions to regenerate command token"
+    "translation": "无重新生成命令令牌权限"
   },
   {
     "id": "api.command_echo.create.app_error",
-    "translation": "Unable to create /echo post, err=%v"
+    "translation": "不能创建/echo的帖子, err=%v"
   },
   {
     "id": "api.command_echo.delay.app_error",
-    "translation": "Delays must be under 10000 seconds"
+    "translation": "延迟必须低于 10000 秒"
   },
   {
     "id": "api.command_echo.desc",
-    "translation": "Echo back text from your account"
+    "translation": "您账户的回声文本"
   },
   {
     "id": "api.command_echo.high_volume.app_error",
-    "translation": "High volume of echo request, cannot process request"
+    "translation": "无法处理高容量的回声请求"
   },
   {
     "id": "api.command_echo.hint",
-    "translation": "'message' [delay in seconds]"
+    "translation": "'信息' [延迟几秒]"
   },
   {
     "id": "api.command_echo.name",
@@ -317,107 +317,107 @@
   },
   {
     "id": "api.command_join.desc",
-    "translation": "Join the open channel"
+    "translation": "加入开放的频道"
   },
   {
     "id": "api.command_join.fail.app_error",
-    "translation": "An error occured while joining the channel."
+    "translation": "加入频道时出错"
   },
   {
     "id": "api.command_join.hint",
-    "translation": "[channel-name]"
+    "translation": "[频道名称]"
   },
   {
     "id": "api.command_join.list.app_error",
-    "translation": "An error occured while listing channels."
+    "translation": "列出频道列表时出错"
   },
   {
     "id": "api.command_join.missing.app_error",
-    "translation": "We couldn't find the channel"
+    "translation": "未发现该频道"
   },
   {
     "id": "api.command_join.name",
-    "translation": "join"
+    "translation": "加入"
   },
   {
     "id": "api.command_join.success",
-    "translation": "Joined channel."
+    "translation": "加入频道"
   },
   {
     "id": "api.command_logout.desc",
-    "translation": "Logout of Mattermost"
+    "translation": "注销 Mattermost"
   },
   {
     "id": "api.command_logout.name",
-    "translation": "logout"
+    "translation": "注销"
   },
   {
     "id": "api.command_logout.success_message",
-    "translation": "Logging out..."
+    "translation": "正在注销..."
   },
   {
     "id": "api.command_me.desc",
-    "translation": "Do an action"
+    "translation": "操作"
   },
   {
     "id": "api.command_me.hint",
-    "translation": "[message]"
+    "translation": "[信息]"
   },
   {
     "id": "api.command_me.name",
-    "translation": "me"
+    "translation": "我"
   },
   {
     "id": "api.command_msg.desc",
-    "translation": "Send Direct Message to a user"
+    "translation": "直接发送信息给用户"
   },
   {
     "id": "api.command_msg.dm_fail.app_error",
-    "translation": "An error occured while creating the direct message."
+    "translation": "创建直接消息时出现一个错误"
   },
   {
     "id": "api.command_msg.fail.app_error",
-    "translation": "An error occured while messaging the user."
+    "translation": "为用户传递信息时出现一个错误"
   },
   {
     "id": "api.command_msg.hint",
-    "translation": "@[username] 'message'"
+    "translation": "@[用户名] '信息'"
   },
   {
     "id": "api.command_msg.list.app_error",
-    "translation": "An error occured while listing users."
+    "translation": "列出用户时出现一个错误"
   },
   {
     "id": "api.command_msg.missing.app_error",
-    "translation": "We couldn't find the user"
+    "translation": "未能找到用户"
   },
   {
     "id": "api.command_msg.name",
-    "translation": "message"
+    "translation": "消息"
   },
   {
     "id": "api.command_msg.success",
-    "translation": "Messaged user."
+    "translation": "给用户"
   },
   {
     "id": "api.command_shrug.desc",
-    "translation": "Adds ¯\\_(ツ)_/¯ to your message"
+    "translation": "把 ¯\\_(ツ)_/¯ 加入你的消息中"
   },
   {
     "id": "api.command_shrug.hint",
-    "translation": "[message]"
+    "translation": "[消息]"
   },
   {
     "id": "api.command_shrug.name",
-    "translation": "shrug"
+    "translation": "耸耸肩"
   },
   {
     "id": "api.context.404.app_error",
-    "translation": "Sorry, we could not find the page."
+    "translation": "对不起，未能找到该页面"
   },
   {
     "id": "api.context.invalid_param.app_error",
-    "translation": "Invalid {{.Name}} parameter"
+    "translation": "无效的 {{.Name}} 参数"
   },
   {
     "id": "api.context.invalid_team_url.debug",
