@@ -149,7 +149,7 @@ func uploadFile(c *Context, w http.ResponseWriter, r *http.Request) {
 
 		path := "teams/" + c.Session.TeamId + "/channels/" + channelId + "/users/" + c.Session.UserId + "/" + uid + "/" + filename
 
-		if err := writeFile(buf.Bytes(), path); err != nil {
+		if err := WriteFile(buf.Bytes(), path); err != nil {
 			c.Err = err
 			return
 		}
@@ -237,7 +237,7 @@ func handleImagesAndForget(filenames []string, fileData [][]byte, teamId, channe
 						return
 					}
 
-					if err := writeFile(buf.Bytes(), dest+name+"_thumb.jpg"); err != nil {
+					if err := WriteFile(buf.Bytes(), dest+name+"_thumb.jpg"); err != nil {
 						l4g.Error(utils.T("api.file.handle_images_forget.upload_thumb.error"), channelId, userId, filename, err)
 						return
 					}
@@ -260,7 +260,7 @@ func handleImagesAndForget(filenames []string, fileData [][]byte, teamId, channe
 						return
 					}
 
-					if err := writeFile(buf.Bytes(), dest+name+"_preview.jpg"); err != nil {
+					if err := WriteFile(buf.Bytes(), dest+name+"_preview.jpg"); err != nil {
 						l4g.Error(utils.T("api.file.handle_images_forget.upload_preview.error"), channelId, userId, filename, err)
 						return
 					}
@@ -379,7 +379,6 @@ func getFile(c *Context, w http.ResponseWriter, r *http.Request) {
 	hash := r.URL.Query().Get("h")
 	data := r.URL.Query().Get("d")
 	teamId := r.URL.Query().Get("t")
-	isDownload := r.URL.Query().Get("download") == "1"
 
 	cchan := Srv.Store.Channel().CheckPermissionsTo(c.Session.TeamId, channelId, c.Session.UserId)
 
@@ -419,27 +418,29 @@ func getFile(c *Context, w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Length", strconv.Itoa(len(f)))
 	w.Header().Del("Content-Type") // Content-Type will be set automatically by the http writer
 
-	if isDownload {
-		// attach extra headers to trigger a download on IE, Edge, and Safari
-		ua := user_agent.New(r.UserAgent())
-		bname, _ := ua.Browser()
+	// attach extra headers to trigger a download on IE, Edge, and Safari
+	ua := user_agent.New(r.UserAgent())
+	bname, _ := ua.Browser()
 
-		parts := strings.Split(filename, "/")
-		filePart := strings.Split(parts[len(parts)-1], "?")[0]
-		w.Header().Set("Content-Disposition", "attachment;filename=\""+filePart+"\"")
+	parts := strings.Split(filename, "/")
+	filePart := strings.Split(parts[len(parts)-1], "?")[0]
+	w.Header().Set("Content-Disposition", "attachment;filename=\""+filePart+"\"")
 
-		if bname == "Edge" || bname == "Internet Explorer" || bname == "Safari" {
-			// trim off anything before the final / so we just get the file's name
-			w.Header().Set("Content-Type", "application/octet-stream")
-		}
+	if bname == "Edge" || bname == "Internet Explorer" || bname == "Safari" {
+		// trim off anything before the final / so we just get the file's name
+		w.Header().Set("Content-Type", "application/octet-stream")
 	}
+
+	// prevent file links from being embedded in iframes
+	w.Header().Set("X-Frame-Options", "DENY")
+	w.Header().Set("Content-Security-Policy", "Frame-ancestors 'none'")
 
 	w.Write(f)
 }
 
 func getFileAndForget(path string, fileData chan []byte) {
 	go func() {
-		data, getErr := readFile(path)
+		data, getErr := ReadFile(path)
 		if getErr != nil {
 			l4g.Error(getErr)
 			fileData <- nil
@@ -505,7 +506,7 @@ func getExport(c *Context, w http.ResponseWriter, r *http.Request) {
 		c.Err.StatusCode = http.StatusForbidden
 		return
 	}
-	data, err := readFile(EXPORT_PATH + EXPORT_FILENAME)
+	data, err := ReadFile(EXPORT_PATH + EXPORT_FILENAME)
 	if err != nil {
 		c.Err = model.NewLocAppError("getExport", "api.file.get_export.retrieve.app_error", nil, err.Error())
 		return
@@ -516,7 +517,7 @@ func getExport(c *Context, w http.ResponseWriter, r *http.Request) {
 	w.Write(data)
 }
 
-func writeFile(f []byte, path string) *model.AppError {
+func WriteFile(f []byte, path string) *model.AppError {
 
 	if utils.Cfg.FileSettings.DriverName == model.IMAGE_DRIVER_S3 {
 		var auth aws.Auth
@@ -539,14 +540,14 @@ func writeFile(f []byte, path string) *model.AppError {
 		}
 
 		if err != nil {
-			return model.NewLocAppError("writeFile", "api.file.write_file.s3.app_error", nil, err.Error())
+			return model.NewLocAppError("WriteFile", "api.file.write_file.s3.app_error", nil, err.Error())
 		}
 	} else if utils.Cfg.FileSettings.DriverName == model.IMAGE_DRIVER_LOCAL {
-		if err := writeFileLocally(f, utils.Cfg.FileSettings.Directory+path); err != nil {
+		if err := WriteFileLocally(f, utils.Cfg.FileSettings.Directory+path); err != nil {
 			return err
 		}
 	} else {
-		return model.NewLocAppError("writeFile", "api.file.write_file.configured.app_error", nil, "")
+		return model.NewLocAppError("WriteFile", "api.file.write_file.configured.app_error", nil, "")
 	}
 
 	return nil
@@ -573,7 +574,7 @@ func moveFile(oldPath, newPath string) *model.AppError {
 			return model.NewLocAppError("moveFile", "api.file.move_file.delete_from_s3.app_error", nil, err.Error())
 		}
 
-		if err := writeFile(fileBytes, newPath); err != nil {
+		if err := WriteFile(fileBytes, newPath); err != nil {
 			return err
 		}
 	} else if utils.Cfg.FileSettings.DriverName == model.IMAGE_DRIVER_LOCAL {
@@ -587,19 +588,19 @@ func moveFile(oldPath, newPath string) *model.AppError {
 	return nil
 }
 
-func writeFileLocally(f []byte, path string) *model.AppError {
+func WriteFileLocally(f []byte, path string) *model.AppError {
 	if err := os.MkdirAll(filepath.Dir(path), 0774); err != nil {
-		return model.NewLocAppError("writeFile", "api.file.write_file_locally.create_dir.app_error", nil, err.Error())
+		return model.NewLocAppError("WriteFile", "api.file.write_file_locally.create_dir.app_error", nil, err.Error())
 	}
 
 	if err := ioutil.WriteFile(path, f, 0644); err != nil {
-		return model.NewLocAppError("writeFile", "api.file.write_file_locally.writing.app_error", nil, err.Error())
+		return model.NewLocAppError("WriteFile", "api.file.write_file_locally.writing.app_error", nil, err.Error())
 	}
 
 	return nil
 }
 
-func readFile(path string) ([]byte, *model.AppError) {
+func ReadFile(path string) ([]byte, *model.AppError) {
 
 	if utils.Cfg.FileSettings.DriverName == model.IMAGE_DRIVER_S3 {
 		var auth aws.Auth
@@ -619,18 +620,18 @@ func readFile(path string) ([]byte, *model.AppError) {
 			if f != nil {
 				return f, nil
 			} else if tries >= 3 {
-				return nil, model.NewLocAppError("readFile", "api.file.read_file.get.app_error", nil, "path="+path+", err="+err.Error())
+				return nil, model.NewLocAppError("ReadFile", "api.file.read_file.get.app_error", nil, "path="+path+", err="+err.Error())
 			}
 			time.Sleep(3000 * time.Millisecond)
 		}
 	} else if utils.Cfg.FileSettings.DriverName == model.IMAGE_DRIVER_LOCAL {
 		if f, err := ioutil.ReadFile(utils.Cfg.FileSettings.Directory + path); err != nil {
-			return nil, model.NewLocAppError("readFile", "api.file.read_file.reading_local.app_error", nil, err.Error())
+			return nil, model.NewLocAppError("ReadFile", "api.file.read_file.reading_local.app_error", nil, err.Error())
 		} else {
 			return f, nil
 		}
 	} else {
-		return nil, model.NewLocAppError("readFile", "api.file.read_file.configured.app_error", nil, "")
+		return nil, model.NewLocAppError("ReadFile", "api.file.read_file.configured.app_error", nil, "")
 	}
 }
 

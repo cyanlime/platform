@@ -6,6 +6,7 @@ import React from 'react';
 import * as AsyncClient from 'utils/async_client.jsx';
 import {browserHistory} from 'react-router';
 
+import BackstageHeader from './backstage_header.jsx';
 import ChannelSelect from 'components/channel_select.jsx';
 import {FormattedMessage} from 'react-intl';
 import FormError from 'components/form_error.jsx';
@@ -49,7 +50,18 @@ export default class AddOutgoingWebhook extends React.Component {
             clientError: ''
         });
 
-        if (!this.state.channelId && !this.state.triggerWords) {
+        const triggerWords = [];
+        if (this.state.triggerWords) {
+            for (let triggerWord of this.state.triggerWords.split('\n')) {
+                triggerWord = triggerWord.trim();
+
+                if (triggerWord.length > 0) {
+                    triggerWords.push(triggerWord);
+                }
+            }
+        }
+
+        if (!this.state.channelId && triggerWords.length === 0) {
             this.setState({
                 saving: false,
                 clientError: (
@@ -63,7 +75,16 @@ export default class AddOutgoingWebhook extends React.Component {
             return;
         }
 
-        if (!this.state.callbackUrls) {
+        const callbackUrls = [];
+        for (let callbackUrl of this.state.callbackUrls.split('\n')) {
+            callbackUrl = callbackUrl.trim();
+
+            if (callbackUrl.length > 0) {
+                callbackUrls.push(callbackUrl);
+            }
+        }
+
+        if (callbackUrls.length === 0) {
             this.setState({
                 saving: false,
                 clientError: (
@@ -79,8 +100,8 @@ export default class AddOutgoingWebhook extends React.Component {
 
         const hook = {
             channel_id: this.state.channelId,
-            trigger_words: this.state.triggerWords.split('\n').map((word) => word.trim()),
-            callback_urls: this.state.callbackUrls.split('\n').map((url) => url.trim()),
+            trigger_words: triggerWords,
+            callback_urls: callbackUrls,
             display_name: this.state.displayName,
             description: this.state.description
         };
@@ -88,7 +109,7 @@ export default class AddOutgoingWebhook extends React.Component {
         AsyncClient.addOutgoingHook(
             hook,
             () => {
-                browserHistory.push('/settings/integrations/installed');
+                browserHistory.push('/settings/integrations/outgoing_webhooks');
             },
             (err) => {
                 this.setState({
@@ -131,17 +152,19 @@ export default class AddOutgoingWebhook extends React.Component {
 
     render() {
         return (
-            <div className='backstage-content row'>
-                <div className='add-outgoing-webhook'>
-                    <div className='backstage-header'>
-                        <h1>
-                            <FormattedMessage
-                                id='add_outgoing_webhook.header'
-                                defaultMessage='Add Outgoing Webhook'
-                            />
-                        </h1>
-                    </div>
-                </div>
+            <div className='backstage-content'>
+                <BackstageHeader>
+                    <Link to={'/settings/integrations/outgoing_webhooks'}>
+                        <FormattedMessage
+                            id='installed_outgoing_webhooks.header'
+                            defaultMessage='Outgoing Webhooks'
+                        />
+                    </Link>
+                    <FormattedMessage
+                        id='add_outgoing_webhook.header'
+                        defaultMessage='Add'
+                    />
+                </BackstageHeader>
                 <div className='backstage-form'>
                     <form className='form-horizontal'>
                         <div className='form-group'>
@@ -250,7 +273,7 @@ export default class AddOutgoingWebhook extends React.Component {
                             <FormError errors={[this.state.serverError, this.state.clientError]}/>
                             <Link
                                 className='btn btn-sm'
-                                to={'/settings/integrations/add'}
+                                to={'/settings/integrations/outgoing_webhooks'}
                             >
                                 <FormattedMessage
                                     id='add_outgoing_webhook.cancel'

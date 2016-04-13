@@ -48,6 +48,66 @@
     "translation": "九月"
   },
   {
+    "id": "api.admin.upload_brand_image.storage.app_error",
+    "translation": "Unable to upload image. Image storage is not configured."
+  },
+  {
+    "id": "api.admin.upload_brand_image.too_large.app_error",
+    "translation": "Unable to upload file. File is too large."
+  },
+  {
+    "id": "api.admin.upload_brand_image.parse.app_error",
+    "translation": "Could not parse multipart form"
+  },
+  {
+    "id": "api.admin.upload_brand_image.no_file.app_error",
+    "translation": "No file under 'image' in request"
+  },
+  {
+    "id": "api.admin.upload_brand_image.array.app_error",
+    "translation": "Empty array under 'image' in request"
+  },
+  {
+    "id": "api.admin.upload_brand_image.not_available.app_error",
+    "translation": "Custom branding is not configured or supported on this server"
+  },
+  {
+    "id": "api.admin.get_brand_image.storage.app_error",
+    "translation": "Image storage is not configured."
+  },
+  {
+    "id": "api.admin.get_brand_image.not_available.app_error",
+    "translation": "Custom branding is not configured or supported on this server"
+  },
+  {
+    "id": "store.sql_system.get_by_name.app_error",
+    "translation": "We couldn't find the system variable."
+  },
+  {
+    "id": "ent.brand.save_brand_image.open.app_error",
+    "translation": "Unable to open the image."
+  },
+  {
+    "id": "ent.brand.save_brand_image.decode_config.app_error",
+    "translation": "Unable to decode image config."
+  },
+  {
+    "id": "ent.brand.save_brand_image.too_large.app_error",
+    "translation": "Unable to open image. Image is too large."
+  },
+  {
+    "id": "ent.brand.save_brand_image.decode.app_error",
+    "translation": "Unable to decode image."
+  },
+  {
+    "id": "ent.brand.save_brand_image.encode.app_error",
+    "translation": "Unable to encode image as PNG."
+  },
+  {
+    "id": "ent.brand.save_brand_image.save_image.app_error",
+    "translation": "Unable to save image"
+  },
+  {
     "id": "api.admin.file_read_error",
     "translation": "日志文件读取错误"
   },
@@ -2208,6 +2268,10 @@
     "translation": "Invalid thumbnail width for file settings.  Must be a positive number."
   },
   {
+    "id": "model.config.is_valid.ldap_security.app_error",
+    "translation": "Invalid connection security for LDAP settings.  Must be '', 'TLS', or 'STARTTLS'"
+  },
+  {
     "id": "model.config.is_valid.listen_address.app_error",
     "translation": "Invalid listen address for service settings Must be set."
   },
@@ -2242,10 +2306,6 @@
   {
     "id": "model.config.is_valid.sql_max_conn.app_error",
     "translation": "Invalid maximum open connection for SQL settings.  Must be a positive number."
-  },
-  {
-    "id": "model.config.is_valid.ldap_security.app_error",
-    "translation": "Invalid connection security for LDAP settings.  Must be '', 'TLS', or 'STARTTLS'"
   },
   {
     "id": "model.file_info.get.gif.app_error",
@@ -2350,6 +2410,10 @@
   {
     "id": "model.outgoing_hook.is_valid.token.app_error",
     "translation": "Invalid token"
+  },
+  {
+    "id": "model.outgoing_hook.is_valid.trigger_words.app_error",
+    "translation": "Invalid trigger words"
   },
   {
     "id": "model.outgoing_hook.is_valid.update_at.app_error",

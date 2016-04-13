@@ -770,7 +770,7 @@ export function createChannel(channel, success, error) {
         }
     });
 
-    track('api', 'api_channels_create', channel.type, 'name', channel.name);
+    track('api', 'api_channels_create');
 }
 
 export function createDirectChannel(channel, userId, success, error) {
@@ -787,7 +787,7 @@ export function createDirectChannel(channel, userId, success, error) {
         }
     });
 
-    track('api', 'api_channels_create_direct', channel.type, 'name', channel.name);
+    track('api', 'api_channels_create_direct');
 }
 
 export function updateChannel(channel, success, error) {
@@ -1734,6 +1734,25 @@ export function updateMfa(data, success, error) {
         success,
         error: (xhr, status, err) => {
             var e = handleError('updateMfa', xhr, status, err);
+            error(e);
+        }
+    });
+}
+
+export function uploadBrandImage(image, success, error) {
+    const formData = new FormData();
+    formData.append('image', image, image.name);
+
+    $.ajax({
+        url: '/api/v1/admin/upload_brand_image',
+        type: 'POST',
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success,
+        error: function onError(xhr, status, err) {
+            var e = handleError('uploadBrandImage', xhr, status, err);
             error(e);
         }
     });
